@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="create-appointment-box">
+    <h2>Create Appointment</h2>
+
+    <label for="userId">User ID:</label>
+    <input #userIdInput type="number" id="userId" />
+
+    <label for="clientName">Client Name:</label>
+    <input #clientNameInput type="text" id="clientName" />
+
+    <label for="appointmentDate">Appointment Date:</label>
+    <input #appointmentDateInput type="datetime-local" id="appointmentDate" />
+
+    <label for="appointmentSubject">Appointment Subject:</label>
+    <input #appointmentSubjectInput type="text" id="appointmentSubject" />
+
+    <button (click)="createAppointment(userIdInput.value, clientNameInput.value, appointmentDateInput.value, appointmentSubjectInput.value)">Create Appointment</button>
+  </div>
+</div>
+

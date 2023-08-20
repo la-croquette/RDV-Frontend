@@ -1,16 +1,15 @@
-/* login.component.css */
+/* appointment-create.component.css */
 
-/* 容器样式 */
-/* 将整个页面垂直和水平居中 */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* 登录框样式 */
-.login-box {
-  max-width: 400px;
+
+/* 创建约会框样式 */
+.create-appointment-box {
+max-width: 400px;
   padding: 20px;
   background-color: #f8f8f8;
   border-radius: 5px;
@@ -21,27 +20,21 @@
   align-items: center ;
 }
 
-/* 输入框样式 */
+/* 输入字段样式 */
 label {
-  display: block;
   margin-bottom: 5px;
-  font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 10px;
+input {
+  padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  width: 100%;
 }
 
-/* 按钮样式 */
 button {
-  display: block;
-  width: 100%;
-  padding: 10px;
+  padding: 10px 15px;
   background-color: #007bff;
   color: white;
   border: none;
@@ -51,12 +44,4 @@ button {
 
 button:hover {
   background-color: #0056b3;
-}
-
-/* 添加一些响应式设计 */
-@media (max-width: 600px) {
-  .container {
-    max-width: 100%;
-    padding: 10px;
-  }
 }
