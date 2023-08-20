@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient,HttpHeaders} from "@angular/common/http";
 import axios from 'axios';
+import { Router } from '@angular/router';
 
 class UserResponse {
   success!: boolean;
   message!: string;
   user!: {
-    id: number;
+    user_id: number;
     username: string ;
     password: string ;
     role: string;
@@ -19,7 +20,7 @@ class UserResponse {
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public http:HttpClient) { } 
+  constructor(public http:HttpClient, private router: Router) { } 
 
   ngOnInit(): void {
   }
@@ -37,7 +38,10 @@ export class LoginComponent implements OnInit {
        next: (response: UserResponse) => {
        console.log(response);
        if(response.success == true){    
-             alert(response.message + ', welcome ' + response.user.username + ' ! ' + 'Your role is ' + response.user.role + '!'); }
+             alert(response.message + ', welcome ' + response.user.username + ' ! ' + 'Your role is ' + response.user.role + '!');
+            if(response.user.role == "commercial"){  this.router.navigate(['/AppointmentCreate', {Id :response.user.user_id}])}
+            else if (response.user.role == "administrative"){  this.router.navigate(['/AppointmentRead']);}         
+          }
         else {alert(response.message +  ' ! ');}
           },
         error: (error) => {
