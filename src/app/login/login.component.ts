@@ -2,6 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient,HttpHeaders} from "@angular/common/http";
 import axios from 'axios';
 
+class UserResponse {
+  success!: boolean;
+  message!: string;
+  user!: {
+    id: number;
+    username: string ;
+    password: string ;
+    role: string;
+  };
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,20 +23,28 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-   doLogin() {
+   login(myUsername : string, myPassword : string ) {
     const headers = new HttpHeaders({ 'accept': '*/*' });
 
     const api = "https://localhost:7225/api/User";
-    const username = 'ning';
-    const password = 'ning';
+    const username = myUsername;
+    const password = myPassword;
 
     // Construct the URL with query parameters
     const apiUrl = `${api}?Username=${username}&Password=${password}`;
 
-    this.http.post(apiUrl, { headers }).subscribe(response => {
-      console.log(response);      
-    });
-  }
+     this.http.post<UserResponse>(apiUrl, { headers }).subscribe({
+       next: (response: UserResponse) => {
+       console.log(response);
+       if(response.success == true){    
+             alert(response.message + ', welcome ' + response.user.username + ' ! ' + 'Your role is ' + response.user.role + '!'); }
+        else {alert(response.message +  ' ! ');}
+          },
+        error: (error) => {
+       console.error('Error:', error);
+         }
+        }); }
+// Methodes for testing     
   public list:any[] = [];
     getData()
   {
@@ -44,4 +62,5 @@ export class LoginComponent implements OnInit {
       console.log(response);
       })
   }
+
 }

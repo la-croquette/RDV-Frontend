@@ -1,9 +1,13 @@
-<button (click) = "doLogin()">post提交数据</button>
-<button (click) = "getData()">get请求数据</button>
+<div class="container">
+  <div class="login-box">
+    <label for="username">Username:</label>
+    <input type="text" id="username" #usernameInput>
 
- 
-<ul>
-    <li *ngFor = "let item of list">{{item.title}}</li>
-</ul>
+    <label for="password">Password:</label>
+    <input type="password" id="password" #passwordInput>
 
-<button (click) = "getAxiosData()">使用axios请求数据</button>
+    <button (click)="login(usernameInput.value, passwordInput.value)">Login</button>
+  </div>
+</div>
+
+
