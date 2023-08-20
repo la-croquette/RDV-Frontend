@@ -1,1 +1,10 @@
-<p>appointment-read works!</p>
+<h2>Appointment List</h2>
+<ul class="appointment-list">
+  <li *ngFor="let appointment of appointments; let odd = odd; let even = even"
+      [ngClass]="{ 'odd-row': odd, 'even-row': even }">
+    <strong>Client Name:</strong> {{ appointment.client_Name }}<br>
+    <strong>Appointment Date:</strong> {{ appointment.appointment_Date }}<br>
+    <strong>Appointment Subject:</strong> {{ appointment.appointment_Subject }}
+  </li>
+</ul>
+
