@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GetAppointments, Appointment} from '../../services/appointment.service'; // 调整路径
+import { GetAppointments, Appointment, AppointmentService} from '../../services/appointment.service'; // 调整路径
 
 
 
@@ -12,25 +12,25 @@ import { GetAppointments, Appointment} from '../../services/appointment.service'
   styleUrls: ['./appointment-read.component.css']
 })
 export class AppointmentReadComponent implements OnInit {
-    appointments: Appointment[] = [];
-   constructor(private http: HttpClient) {}
+   appointments : Appointment[] = [];
+   constructor(private appointmentService: AppointmentService, private http: HttpClient) {}
     
   ngOnInit(): void {
-       this.getAppointments();
+     this.getAppointments();
   }
    
-   getAppointments() {
-    const apiUrl = 'https://localhost:7225/api/Appointment';
-    const headers = new HttpHeaders({ 'accept': '*/*' });
-    this.http.get<GetAppointments>(apiUrl, { headers }).subscribe({
+  getAppointments(): void {
+    this.appointmentService.getAppointments().subscribe({
       next: (response: GetAppointments) => {
         console.log(response);
-        this.appointments = response.appointments;
+        this.appointmentService.setAppointments(response.appointments); 
+         this.appointments  = this.appointmentService.getAppointmentsArray();
+        // 设置数据到服务中
       },
       error: (error) => {
         console.error('Error:', error);
         // Handle errors here
-      }
+      },
     });
   }
 
