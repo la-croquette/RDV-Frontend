@@ -6,6 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppointmentModule } from './appointment/appointment.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 
@@ -21,7 +26,12 @@ import { AppointmentModule } from './appointment/appointment.module';
     BrowserModule,
     AppRoutingModule,
     AppointmentModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+ 
+        MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
