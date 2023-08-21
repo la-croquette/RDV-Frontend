@@ -1,0 +1,50 @@
+/* appointment-update.component.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 更新约会框样式 */
+.update-appointment-box {
+  max-width: 1500px; /* 调整容器宽度，以容纳更多元素 */
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* 允许内容换行到下一行 */
+}
+
+/* 输入字段样式 */
+.update-appointment-box label {
+  flex: 1; /* 让 label 元素平均占据一行内的空间 */
+  margin-right: 10px; /* 为了在 label 之间添加一些间距 */
+}
+
+.update-appointment-box input {
+  flex: 2; /* 让 input 元素占据两行内的空间 */
+  padding: 8px;
+  margin-bottom: 10px;
+  margin-right: 10px; /* 添加 input 元素之间的间距 */
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.update-appointment-box button {
+  flex: 1; /* 让 button 元素占据一行内的空间 */
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.update-appointment-box button:hover {
+  background-color: #0056b3;
+}

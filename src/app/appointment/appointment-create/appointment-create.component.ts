@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ActivatedRoute,Route } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+
 
 class CreateResponse {
   success!: boolean;
@@ -13,13 +14,14 @@ class CreateResponse {
 })
 export class AppointmentCreateComponent implements OnInit {
 
-  constructor(public http: HttpClient, private route : ActivatedRoute) { }
+  constructor(public http: HttpClient, private route : ActivatedRoute,  private router: Router) { }
      user_id: number  = 0 ;
     errorMessage: string = '';
      
   ngOnInit(): void {
     this.user_id = this.route.snapshot.params['Id'];
   }
+  
 
   createAppointment( client_Name: string, appointment_Date: string, appointment_Subject: string) {
     const apiUrl = 'https://localhost:7225/api/Appointment';
@@ -35,6 +37,7 @@ export class AppointmentCreateComponent implements OnInit {
       next: (response:CreateResponse) => {
         console.log(response);
         alert(response.message);
+       this.router.navigate(['/AppointmentCommercial', {Id :this.user_id}]);
         // Handle the response here
       },
       error: (error) => {
@@ -44,5 +47,7 @@ export class AppointmentCreateComponent implements OnInit {
       }
     });
   }
+
+
 }
 

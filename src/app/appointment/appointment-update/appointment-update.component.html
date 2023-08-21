@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="update-appointment-box">
+
+    <label for="clientName">Client Name:</label>
+    <input #clientNameInput type="text" id="clientName" [value]="client_Name" />
+
+    <label for="appointmentDate">Appointment Date:</label>
+    <input #appointmentDateInput type="datetime-local" id="appointmentDate" [value]=" this.appointment_Date" />
+
+    <label for="appointmentSubject">Appointment Subject:</label>
+    <input #appointmentSubjectInput type="text" id="appointmentSubject" [value]="appointment_Subject" />
+
+    <button (click)="updateAppointment(clientNameInput.value, appointmentDateInput.value, appointmentSubjectInput.value)">Update Appointment</button>
+  </div>
+</div>

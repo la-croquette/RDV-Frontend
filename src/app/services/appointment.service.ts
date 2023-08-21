@@ -24,6 +24,6 @@ export class Appointment {
   appointment_Id: number = 0;
   user_Id: number = 0;
   client_Name: string = "";
-  appointment_Date: string = "";
+  appointment_Date: Date =  new Date(2023, 7, 21, 15, 30, 0);
   appointment_Subject: string = "";
 }

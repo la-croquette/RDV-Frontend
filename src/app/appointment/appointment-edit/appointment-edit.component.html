@@ -5,7 +5,7 @@
     <strong>Client Name:</strong> {{ appointment.client_Name }}<br>
     <strong>Appointment Date:</strong> {{ appointment.appointment_Date | date:'yyyy-MM-dd HH:mm:ss' }}<br>
     <strong>Appointment Subject:</strong> {{ appointment.appointment_Subject }}
-    <button (click)="editAppointment(appointment)">Edit</button>
+    <button (click)="navigateToUpdate(appointment)">Edit</button>
     <button (click)="deleteAppointment(appointment)">Delete</button>
   </li>
 </ul>
