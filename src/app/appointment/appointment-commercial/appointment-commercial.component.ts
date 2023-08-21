@@ -1,16 +1,98 @@
 import { Component, OnInit } from '@angular/core';
-import { AppointmentCreateComponent } from '../appointment-create/appointment-create.component';
-import { AppointmentReadComponent } from '../appointment-read/appointment-read.component';
+import { GetAppointments, Appointment} from '../../services/appointment.service'; 
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {  ActivatedRoute,Router } from '@angular/router';
+
+class CreateResponse {
+  success!: boolean;
+  message!: string;
+}
+
+
 @Component({
   selector: 'app-appointment-commercial',
   templateUrl: './appointment-commercial.component.html',
   styleUrls: ['./appointment-commercial.component.css']
 })
 export class AppointmentCommercialComponent implements OnInit {
-
-  constructor() { }
+   appointments: Appointment[] = [];
+  user_id: number  = 0 ;
+    errorMessage: string = '';
+  constructor(public http: HttpClient, private route : ActivatedRoute,  private router: Router) { }
 
   ngOnInit(): void {
+        this.user_id = this.route.snapshot.params['Id'];
+          this.getAppointments();
+  }
+  createAppointment( client_Name: string, appointment_Date: string, appointment_Subject: string) {
+    const apiUrl = 'https://localhost:7225/api/Appointment';
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const appointmentData = {
+     user_Id: this.user_id,
+     client_Name,
+     appointment_Date,
+     appointment_Subject
+    };
+
+    this.http.post<CreateResponse>(apiUrl, appointmentData, { headers }).subscribe({
+      next: (response:CreateResponse) => {
+        console.log(response);
+        alert(response.message);
+             this.ngOnInit();
+
+        // Handle the response here
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        this.errorMessage = 'Please fill in all three boxes !'+ '\nAn error occurred: ' + error.message; // Store error message
+        alert(this.errorMessage); // Display error in alert
+      }
+    });
+  }
+
+  deleteAppointment(appointment: Appointment): void {
+  const apiUrl = `https://localhost:7225/api/Appointment/${appointment.appointment_Id}`;
+  
+  this.http.delete(apiUrl).subscribe({
+    next: (response) => {
+      console.log(response);
+      // Refresh the appointment list after deletion
+      this.getAppointments();
+      alert("Appointment deleted successfully");
+       this.ngOnInit();
+    },
+    error: (error) => {
+      console.error('Error:', error);
+      alert("Failed to delete appointment: " + error.message);
+    }
+  });
+}
+
+navigateToUpdate(appointment: Appointment): void {
+
+
+     this.router.navigate(['/AppointmentUpdate', {
+      appointment_Id :appointment.appointment_Id, 
+      client_Name :appointment.client_Name,
+      appointment_Date :appointment.appointment_Date, 
+      appointment_Subject :appointment.appointment_Subject, 
+      user_Id: appointment.user_Id
+                                       }])  
+  }
+
+   getAppointments() {
+    const apiUrl = 'https://localhost:7225/api/Appointment';
+    const headers = new HttpHeaders({ 'accept': '*/*' });
+    this.http.get<GetAppointments>(apiUrl, { headers }).subscribe({
+      next: (response: GetAppointments) => {
+        console.log(response);
+        this.appointments = response.appointments;
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        // Handle errors here
+      }
+    });
   }
 
 }
