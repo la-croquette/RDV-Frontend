@@ -12,7 +12,7 @@ export class AppointmentEditComponent implements OnInit {
  appointments: Appointment[] = [];
    constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    this.getAppointments();
+     this.getAppointments();
      this.fetchAppointments();
   }
   deleteAppointment(appointment: Appointment): void {
@@ -24,6 +24,7 @@ export class AppointmentEditComponent implements OnInit {
       // Refresh the appointment list after deletion
       this.fetchAppointments();
       alert("Appointment deleted successfully");
+       this.ngOnInit();
     },
     error: (error) => {
       console.error('Error:', error);
