@@ -21,14 +21,14 @@ export class AppointmentCreateComponent implements OnInit {
     this.user_id = this.route.snapshot.params['Id'];
   }
 
-  createAppointment( clientName: string, appointmentDate: string, appointmentSubject: string) {
+  createAppointment( client_Name: string, appointment_Date: string, appointment_Subject: string) {
     const apiUrl = 'https://localhost:7225/api/Appointment';
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const appointmentData = {
-     userId: this.user_id,
-      clientName,
-      appointmentDate,
-      appointmentSubject
+     user_Id: this.user_id,
+     client_Name,
+     appointment_Date,
+     appointment_Subject
     };
 
     this.http.post<CreateResponse>(apiUrl, appointmentData, { headers }).subscribe({

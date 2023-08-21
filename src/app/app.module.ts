@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { AppointmentModule } from './appointment/appointment.module';
 
 
+
+
 @NgModule({
   // declaration 是用于声明属于自己的组件
   declarations: [

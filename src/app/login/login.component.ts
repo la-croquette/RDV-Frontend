@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
        console.log(response);
        if(response.success == true){    
              alert(response.message + ', welcome ' + response.user.username + ' ! ' + 'Your role is ' + response.user.role + '!');
-            if(response.user.role == "commercial"){  this.router.navigate(['/AppointmentCreate', {Id :response.user.user_id}])}
+            if(response.user.role == "commercial"){  this.router.navigate(['/AppointmentCommercial', {Id :response.user.user_id}])}
             else if (response.user.role == "administrative"){  this.router.navigate(['/AppointmentRead']);}         
           }
         else {alert(response.message +  ' ! ');}
