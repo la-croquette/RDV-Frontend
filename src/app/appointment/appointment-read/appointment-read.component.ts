@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GetAppointments, Appointment, AppointmentService} from '../../services/appointment.service'; // 调整路径
-
-
-
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { GetAppointments, Appointment, AppointmentService } from '../../services/appointment.service';
 
 @Component({
   selector: 'app-appointment-read',
@@ -12,26 +11,38 @@ import { GetAppointments, Appointment, AppointmentService} from '../../services/
   styleUrls: ['./appointment-read.component.css']
 })
 export class AppointmentReadComponent implements OnInit {
-   appointments : Appointment[] = [];
-   constructor(private appointmentService: AppointmentService, private http: HttpClient) {}
-    
+  appointments: Appointment[] = [];
+  dataSource = new MatTableDataSource<Appointment>();
+  filterValue: string = '';
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private appointmentService: AppointmentService, private http: HttpClient) {}
+
   ngOnInit(): void {
-     this.getAppointments();
+    this.getAppointments();
   }
-   
+
   getAppointments(): void {
     this.appointmentService.getAppointments().subscribe({
       next: (response: GetAppointments) => {
-        console.log(response);
-        this.appointmentService.setAppointments(response.appointments); 
-         this.appointments  = this.appointmentService.getAppointmentsArray();
-        // 设置数据到服务中
+        this.appointments = response.appointments;
+        this.dataSource.data = this.appointments;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       },
       error: (error) => {
         console.error('Error:', error);
-        // Handle errors here
+        // 在这里处理错误
       },
     });
   }
+
+applyFilter(): void {
+  this.dataSource.filter = this.filterValue.trim().toLowerCase();
+  if (this.dataSource.paginator) {
+    this.dataSource.paginator.firstPage();
+  }
+}
 
 }

@@ -28,8 +28,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AppointmentModule,
     HttpClientModule,
     BrowserAnimationsModule,
- 
-        MatTableModule,
+    MatTableModule,
     MatSortModule,
     MatPaginatorModule
   ],

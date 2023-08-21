@@ -1,10 +1,37 @@
-<h2>Appointment List</h2>
-<ul class="appointment-list">
-  <li *ngFor="let appointment of appointments; let odd = odd; let even = even"
-      [ngClass]="{ 'odd-row': odd, 'even-row': even }">
-    <strong>Client Name:</strong> {{ appointment.client_Name }}<br>
-    <strong>Appointment Date:</strong> {{ appointment.appointment_Date | date:'yyyy-MM-dd HH:mm:ss' }}<br>
-    <strong>Appointment Subject:</strong> {{ appointment.appointment_Subject }}
-  </li>
-</ul>
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+    <!-- 客户姓名列 -->
+    <ng-container matColumnDef="client_Name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</mat-header-cell>
+      <mat-cell *matCellDef="let appointment">{{ appointment.client_Name }}</mat-cell>
+    </ng-container>
+
+    <!-- 预约日期列 -->
+    <ng-container matColumnDef="appointment_Date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Date</mat-header-cell>
+      <mat-cell *matCellDef="let appointment">{{ appointment.appointment_Date | date:'yyyy-MM-dd HH:mm:ss' }}</mat-cell>
+    </ng-container>
+
+    <!-- 预约主题列 -->
+    <ng-container matColumnDef="appointment_Subject">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Sujet</mat-header-cell>
+      <mat-cell *matCellDef="let appointment">{{ appointment.appointment_Subject }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['client_Name', 'appointment_Date', 'appointment_Subject']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['client_Name', 'appointment_Date', 'appointment_Subject']"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+</div>
+
+<!-- 过滤器 -->
+<div class="filter-container">
+  <mat-form-field>
+    <input matInput [(ngModel)]="filterValue" placeholder="filter word">
+  </mat-form-field>
+  <button mat-button (click)="applyFilter()">Filter</button>
+</div>
+
+
 
