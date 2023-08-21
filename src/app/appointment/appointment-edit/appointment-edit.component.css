@@ -1,0 +1,22 @@
+/* appointment-list.component.css */
+
+/* 奇数行样式 */
+.odd-row {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+/* 偶数行样式 */
+.even-row {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+/* 通用样式 */
+.appointment-list li {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
