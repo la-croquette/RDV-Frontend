@@ -10,3 +10,6 @@ And the Backend https://github.com/la-croquette/RDV-Backend ,which is developed 
 
 You can run this software by executing `ng serve` from the root directory.
 
+ng add @angular/material
+
+npm install bootstrap jquery popper.js --save
