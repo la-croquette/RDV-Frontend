@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {  ActivatedRoute,Router } from '@angular/router';
 
 
+
 class CreateResponse {
   success!: boolean;
   message!: string;
@@ -64,6 +65,24 @@ deleteAppointment(appointment: Appointment): void {
       // Refresh the appointment list after deletion
       this.getAppointments();
       alert("Appointment deleted successfully");
+       if(appointment.user_Id == this.user_id) {}
+       else { 
+      const oldTime = new Date (appointment.appointment_Date);
+      const oldAppointmentTime =oldTime.toLocaleString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+               minute: '2-digit'
+               });
+
+
+        const   message  = "Your appointment which at " + oldAppointmentTime + " with " +appointment.client_Name 
+        +" with the theme of " +  appointment.appointment_Subject +
+        " has been deleted " ;
+        this.appointmentService.addNotification(appointment.user_Id, message)
+}
+
        this.ngOnInit();
     },
     error: (error) => {
