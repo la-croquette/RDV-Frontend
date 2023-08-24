@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAppointments, Appointment} from '../../services/appointment.service'; 
+import { GetAppointments, Appointment, AppointmentService } from '../../services/appointment.service'; 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {  ActivatedRoute,Router } from '@angular/router';
+
 
 class CreateResponse {
   success!: boolean;
@@ -15,16 +16,20 @@ class CreateResponse {
   styleUrls: ['./appointment-commercial.component.css']
 })
 export class AppointmentCommercialComponent implements OnInit {
-   appointments: Appointment[] = [];
+  appointments: Appointment[] = [];
   user_id: number  = 0 ;
-    errorMessage: string = '';
-  constructor(public http: HttpClient, private route : ActivatedRoute,  private router: Router) { }
+  errorMessage: string = '';
+
+  constructor(public http: HttpClient, private route : ActivatedRoute,  private router: Router, private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
         this.user_id = this.route.snapshot.params['Id'];
           this.getAppointments();
-  }
-  createAppointment( client_Name: string, appointment_Date: string, appointment_Subject: string) {
+          this.appointments = this.appointmentService.getAppointmentsArray();
+        
+        }
+
+createAppointment( client_Name: string, appointment_Date: string, appointment_Subject: string) {
     const apiUrl = 'https://localhost:7225/api/Appointment';
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const appointmentData = {
@@ -50,7 +55,7 @@ export class AppointmentCommercialComponent implements OnInit {
     });
   }
 
-  deleteAppointment(appointment: Appointment): void {
+deleteAppointment(appointment: Appointment): void {
   const apiUrl = `https://localhost:7225/api/Appointment/${appointment.appointment_Id}`;
   
   this.http.delete(apiUrl).subscribe({
@@ -69,29 +74,25 @@ export class AppointmentCommercialComponent implements OnInit {
 }
 
 navigateToUpdate(appointment: Appointment): void {
-
-
-     this.router.navigate(['/AppointmentUpdate', {
+      this.router.navigate(['/AppointmentUpdate', {
       appointment_Id :appointment.appointment_Id, 
       client_Name :appointment.client_Name,
       appointment_Date :appointment.appointment_Date, 
       appointment_Subject :appointment.appointment_Subject, 
-      user_Id: appointment.user_Id
+      creater_Id: appointment.user_Id,
+      editer_Id : this.user_id
                                        }])  
   }
 
-   getAppointments() {
-    const apiUrl = 'https://localhost:7225/api/Appointment';
-    const headers = new HttpHeaders({ 'accept': '*/*' });
-    this.http.get<GetAppointments>(apiUrl, { headers }).subscribe({
+  getAppointments(): void {
+    this.appointmentService.getAppointments().subscribe({
       next: (response: GetAppointments) => {
-        console.log(response);
         this.appointments = response.appointments;
       },
       error: (error) => {
         console.error('Error:', error);
-        // Handle errors here
-      }
+        // 在这里处理错误
+      },
     });
   }
 

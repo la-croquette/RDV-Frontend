@@ -6,13 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppointmentService {
-   private appointments: Appointment[] = [];
+  private apiUrl = 'https://localhost:7225/api/Notification/AddNotification';
+  private appointments: Appointment[] = [];
   constructor(private http: HttpClient) {}
 
-  getAppointments(): Observable<GetAppointments> {
-    const apiUrl = 'https://localhost:7225/api/Appointment';
+// To get all the appointments, is used by commercial and administrative for listing the appointments
+// 对于Observabale的理解 ： 
+getAppointments(): Observable<GetAppointments> {
     const headers = new HttpHeaders({ 'accept': '*/*' });
-
+    const apiUrl = 'https://localhost:7225/api/Appointment';
     return this.http.get<GetAppointments>(apiUrl, { headers });
   }
 
@@ -22,6 +24,25 @@ export class AppointmentService {
     setAppointments(appointments: Appointment[]): void {
     this.appointments = appointments;
   }
+// To add a new notification to someone whose appointment has been changed
+ addNotification(user_Id: number, message: string): void {
+    const headers = new HttpHeaders({ 'accept': '*/*' });
+  const apiUrl = 'https://localhost:7225/api/Notification/AddNotification';
+    const queryParams = `user_Id=${user_Id}&message=${encodeURIComponent(message)}`;
+    const url = `${apiUrl}?${queryParams}`;
+
+    this.http.post(url, null, { headers }).subscribe({
+      next: (response) => {
+        console.log(response);
+        alert('Notification added successfully');
+        // Handle the response here
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        alert('An error occurred: ' + error.message);
+      },
+    });
+  }  
 }
 
 export class GetAppointments {
