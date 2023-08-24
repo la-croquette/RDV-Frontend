@@ -1,22 +1,31 @@
-/* appointment-list.component.css */
-
-/* 奇数行样式 */
-.odd-row {
-  background-color: #f0f0f0;
-  padding: 10px;
-  margin-bottom: 5px;
+.filter-container {
+  display: flex;
+  justify-content: flex-end; /* 将内容推到最右侧 */
+  align-items: center;
+  margin-bottom: 16px;
 }
 
-/* 偶数行样式 */
-.even-row {
-  background-color: #ffffff;
-  padding: 10px;
-  margin-bottom: 5px;
+.filter-input {
+  display: flex;
+  align-items: center;
 }
 
-/* 通用样式 */
-.appointment-list li {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.filter-input mat-form-field {
+  margin-right: 8px; /* 调整输入框与按钮之间的间距 */
 }
+
+.filter-button {
+  background-color: #007bff;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.filter-button:hover {
+  background-color: #0056b3;
+}
+
+.filter-input button {
+  color: #000000;
+
+}
+

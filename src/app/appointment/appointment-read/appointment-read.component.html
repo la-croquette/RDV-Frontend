@@ -27,11 +27,14 @@
 
 <!-- 过滤器 -->
 <div class="filter-container">
-  <mat-form-field>
-    <input matInput [(ngModel)]="filterValue" placeholder="filter word">
-  </mat-form-field>
-  <button mat-button (click)="applyFilter()">Filter</button>
+  <div class="filter-input">
+    <mat-form-field>
+      <input matInput [(ngModel)]="filterValue" placeholder="Filter word">
+    </mat-form-field>
+    <button mat-button (click)="applyFilter()">Filter</button>
+  </div>
 </div>
+
 
 
 
