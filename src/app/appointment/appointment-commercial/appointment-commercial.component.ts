@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetAppointments, Appointment, AppointmentService } from '../../services/appointment.service'; 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {  ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 
 

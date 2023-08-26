@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // Add this import
 import { AppointmentService } from '../../services/appointment.service'; 
 
+//相比于接口 类是更沉重的开销，接口只有属性 开销更小
 interface UpdateResponse { // Define the UpdateResponse interface
   success: boolean;
   message: string;

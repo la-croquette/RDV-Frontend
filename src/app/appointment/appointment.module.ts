@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // 导入 FormsModule
+import { FormsModule } from '@angular/forms'; 
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort'; 
+import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatInputModule } from '@angular/material/input'; 
+
 import { AppointmentReadComponent } from './appointment-read/appointment-read.component';
 import { AppointmentCommercialComponent } from './appointment-commercial/appointment-commercial.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort'; // 导入 MatSortModule
-import { MatPaginatorModule } from '@angular/material/paginator'; // 导入 MatPaginatorModule
-import { MatInputModule } from '@angular/material/input'; // 导入 MatInputModule
-
 @NgModule({
   declarations: [
     AppointmentReadComponent,
@@ -17,13 +17,19 @@ import { MatInputModule } from '@angular/material/input'; // 导入 MatInputModu
     CommonModule,
     FormsModule,
     MatTableModule,
-    MatSortModule, // 添加 MatSortModule
-    MatPaginatorModule, // 添加 MatPaginatorModule
-    MatInputModule // 添加 MatInputModule
+    MatSortModule, 
+    MatPaginatorModule,
+    MatInputModule
+ 
   ],
   exports: [
     AppointmentReadComponent,
-    AppointmentCommercialComponent
+    AppointmentCommercialComponent,
+    MatTableModule,
+    MatSortModule, 
+    MatPaginatorModule,
+    MatInputModule
+
   ]
 })
 export class AppointmentModule { }

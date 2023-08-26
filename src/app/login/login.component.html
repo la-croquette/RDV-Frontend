@@ -4,6 +4,7 @@
     <input type="text" id="username" #usernameInput>
 
     <label for="password">Password:</label>
+     <!-- 当你把输入的type设置为password时，输入就不可见了 -->
     <input type="password" id="password" #passwordInput>
 
     <button (click)="login(usernameInput.value, passwordInput.value)">Login</button>
