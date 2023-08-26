@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppointmentService {
-  private apiUrl = 'https://localhost:7225/api/Notification/AddNotification';
   private appointments: Appointment[] = [];
   constructor(private http: HttpClient) {}
 
@@ -25,7 +24,7 @@ getAppointments(): Observable<GetAppointments> {
     this.appointments = appointments;
   }
 // To add a new notification to someone whose appointment has been changed
- addNotification(user_Id: number, message: string): void {
+addNotification(user_Id: number, message: string): void {
     const headers = new HttpHeaders({ 'accept': '*/*' });
   const apiUrl = 'https://localhost:7225/api/Notification/AddNotification';
     const queryParams = `user_Id=${user_Id}&message=${encodeURIComponent(message)}`;

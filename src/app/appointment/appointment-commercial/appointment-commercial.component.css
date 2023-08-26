@@ -27,7 +27,9 @@ header {
 
 .container {
   display: flex;
-  justify-content: center;
+  /* 主轴方向上对齐 */
+  justify-content: center; 
+   /* 交叉轴方向上对齐 */
   align-items: center;
 }
 

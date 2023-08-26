@@ -4,14 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { MatTableModule} from '@angular/material/table';
-// import { MatSortModule } from '@angular/material/sort';
-// import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 
 import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
-//父模块和子模块之间存在继承关系
 import { AppointmentModule } from './appointment/appointment.module';
 import { LoginComponent } from './login/login.component';
 
@@ -31,12 +27,8 @@ import { LoginComponent } from './login/login.component';
     AppointmentModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    // MatTableModule,
-    // MatSortModule,
-    // MatPaginatorModule,
     MatDialogModule,
     CommonModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
