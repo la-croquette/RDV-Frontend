@@ -1,29 +1,7 @@
 header {
     text-align: center;
   }
-  /* appointment-list.component.css */
 
-/* 奇数行样式 */
-.odd-row {
-  background-color: #f0f0f0;
-  padding: 10px;
-  margin-bottom: 5px;
-}
-
-/* 偶数行样式 */
-.even-row {
-  background-color: #ffffff;
-  padding: 10px;
-  margin-bottom: 5px;
-}
-
-/* 通用样式 */
-.appointment-list li {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-/* appointment-create.component.css */
 
 .container {
   display: flex;
@@ -65,7 +43,7 @@ header {
 .create-appointment-box button {
   flex: 1; /* 让 button 元素占据一行内的空间 */
   padding: 10px 15px;
-  background-color: #007bff;
+  background-color:  #39777C;
   color: white;
   border: none;
   border-radius: 3px;
@@ -73,5 +51,44 @@ header {
 }
 
 .create-appointment-box button:hover {
-  background-color: #0056b3;
+  background-color: #1B455E;
+}
+
+  /* appointment-list.component.css */
+
+/* 奇数行样式 */
+.odd-row {
+  background-color: #f0f0f0;
+
+}
+
+/* 偶数行样式 */
+.even-row {
+  background-color: #ffffff;
+}
+
+/* 通用样式 */
+.appointment-list li {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  margin-bottom: 5px;
+}
+
+
+
+
+.spaced-button {
+  flex-grow: 1; /* 让按钮平均分配可用空间 */
+  margin-right: 5px; /* 添加右侧间距 */
+}
+
+.button-container{
+
+  display: flex;
+  justify-content: flex-end; /* 将内容推到最右侧 */
+}
+.right-aligned {
+  display: inline-block; /* 保持内部元素的原始大小 */
 }

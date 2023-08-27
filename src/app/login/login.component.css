@@ -42,7 +42,7 @@ button {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color:  #39777C;
   color: white;
   border: none;
   border-radius: 3px;
@@ -50,7 +50,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #1B455E;
 }
 
 /* 添加一些响应式设计 */

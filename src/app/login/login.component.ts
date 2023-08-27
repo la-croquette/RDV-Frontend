@@ -84,9 +84,11 @@ loadNotifications(userId: number) {
  openNotificationDialog(notifications: Notification[]) {
   console.log(notifications)
   const messages = notifications.map(notification => notification.message);
+  if (notifications.length == 0){}
+  else{
   const dialogRef = this.dialog.open(NotificationDialogComponent, {
     data: messages
-  });
+  }) };
 }
 
 }

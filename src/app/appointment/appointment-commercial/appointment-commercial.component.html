@@ -16,14 +16,19 @@
   </div>
 </div>
 
-           <h2>Appointment List</h2>
+  <header>  <h2>Appointment List</h2> </header>
 <ul class="appointment-list">
-  <li *ngFor="let appointment of appointments; let odd = odd; let even = even"
-      [ngClass]="{ 'odd-row': odd, 'even-row': even }">
+   <!-- "single class binding" 意味着通过条件来动态地绑定单个CSS类· -->
+  <li *ngFor="let appointment of appointments; let i = index"
+      [class.even-row]="i%2==0" [class.odd-row]="i%2" >
     <strong>Client Name:</strong> {{ appointment.client_Name }}<br>
     <strong>Appointment Date:</strong> {{ appointment.appointment_Date | date:'yyyy-MM-dd HH:mm:ss' }}<br>
-    <strong>Appointment Subject:</strong> {{ appointment.appointment_Subject }}
-    <button (click)="navigateToUpdate(appointment)" class="btn btn-success"> Edit  </button>
-    <button (click)="deleteAppointment(appointment)" class="btn btn-danger">Delete</button>
+    <strong>Appointment Subject:</strong> {{ appointment.appointment_Subject }} <br>
+    <div class = "button-container"> 
+        <div class="right-aligned">
+    <button (click)="navigateToUpdate(appointment)" class="btn btn-success spaced-button"> Modify </button>
+    <button (click)="deleteAppointment(appointment)" class="btn btn-danger spaced-button"> Delete </button>  
+    </div>
+  </div>
   </li>
 </ul>
