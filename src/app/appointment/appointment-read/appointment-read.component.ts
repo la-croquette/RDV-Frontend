@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -18,7 +17,7 @@ export class AppointmentReadComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private appointmentService: AppointmentService, private http: HttpClient) {}
+  constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
     this.getAppointments();

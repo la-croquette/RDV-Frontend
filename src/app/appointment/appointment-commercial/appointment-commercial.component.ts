@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GetAppointments, Appointment, AppointmentService } from '../../services/appointment.service'; 
+// HttpClient和HttpHeaders是与HTTP通信相关的类，它们都位于@angular/common/http模块
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute,Router } from '@angular/router';
 
