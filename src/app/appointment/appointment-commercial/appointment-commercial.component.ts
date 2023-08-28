@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { GetAppointments, Appointment, AppointmentService } from '../../services/appointment.service'; 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute,Router } from '@angular/router';
@@ -27,8 +28,7 @@ export class AppointmentCommercialComponent implements OnInit {
         this.user_id = this.route.snapshot.params['Id'];
           this.getAppointments();
           this.appointments = this.appointmentService.getAppointmentsArray();
-        
-        }
+                }
 
 createAppointment( client_Name: string, appointment_Date: string, appointment_Subject: string) {
     const apiUrl = 'https://localhost:7225/api/Appointment';

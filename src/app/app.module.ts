@@ -12,7 +12,7 @@ import { AppointmentModule } from './appointment/appointment.module';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  // declaration 是用于声明属于自己的组件
+  // declaration 是用于声明属于自己的组件, 这些组件可以使用这里声明的Module
   declarations: [
     AppComponent,
     LoginComponent,

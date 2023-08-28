@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
 import {HttpClient,HttpHeaders} from "@angular/common/http";
 import { Router } from '@angular/router';
 import { NotificationDialogComponent } from '../notification-dialog/notification-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Title } from '@angular/platform-browser';
+
 class UserResponse {
   success!: boolean;
   message!: string;
@@ -29,9 +32,12 @@ export class LoginComponent implements OnInit {
 
   constructor(public http:HttpClient, 
     private router: Router,
-    private dialog: MatDialog) { } 
+    private dialog: MatDialog,
+    private titleService: Title
+    ) { } 
 
   ngOnInit(): void {
+     this.titleService.setTitle('Appointment System login')
   }
 
 login(myUsername : string, myPassword : string ) {
