@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
 login(myUsername : string, myPassword : string ) {
+  // I can accept any type of the reply
     const headers = new HttpHeaders({ 'accept': '*/*' });
 
     const api = "https://localhost:7225/api/User";
@@ -51,6 +52,8 @@ login(myUsername : string, myPassword : string ) {
     const apiUrl = `${api}?Username=${username}&Password=${password}`;
 
      this.http.post<UserResponse>(apiUrl, { headers }).subscribe({
+      // When the response is successful, the content after next will be called.
+      // 响应成功的时候，next之后的内容会被调动。
        next: (response: UserResponse) => {
        console.log(response);
        if(response.success == true){    
@@ -63,10 +66,13 @@ login(myUsername : string, myPassword : string ) {
           }
         else {alert(response.message +  ' ! ');}
           },
+        // When the response is not successful, the content after errot will be called. 
+        // 错误的时候，打印错误。
         error: (error) => {
        console.error('Error:', error);
          }
         }); }
+
 loadNotifications(userId: number) {
   const api = "https://localhost:7225/api/Notification/GetNotificationsByUserId";
   const apiUrl = `${api}?user_Id=${userId}`;

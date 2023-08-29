@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { GetAppointments, Appointment, AppointmentService } from '../../services/appointment.service'; 
-// HttpClient和HttpHeaders是与HTTP通信相关的类，它们都位于@angular/common/http模块
+// HttpClient是一个服务，HttpHeaders是与HTTP通信相关的类，它们都位于@angular/common/http模块
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute,Router } from '@angular/router';
 
@@ -23,12 +22,15 @@ export class AppointmentCommercialComponent implements OnInit {
   user_id: number  = 0 ;
   errorMessage: string = '';
 
-  constructor(public http: HttpClient, private route : ActivatedRoute,  private router: Router, private appointmentService: AppointmentService) { }
+  constructor(public http: HttpClient, 
+              private route : ActivatedRoute,
+              private router: Router,
+              private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
         this.user_id = this.route.snapshot.params['Id'];
-          this.getAppointments();
-          this.appointments = this.appointmentService.getAppointmentsArray();
+        this.getAppointments();
+        this.appointments = this.appointmentService.getAppointmentsArray();
                 }
 
 createAppointment( client_Name: string, appointment_Date: string, appointment_Subject: string) {
@@ -74,7 +76,7 @@ deleteAppointment(appointment: Appointment): void {
               month: 'short',
               day: 'numeric',
               hour: '2-digit',
-               minute: '2-digit'
+              minute: '2-digit'
                });
 
 

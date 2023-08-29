@@ -20,17 +20,8 @@ import { AppointmentCommercialComponent } from './appointment-commercial/appoint
     MatTableModule,
     MatSortModule, 
     MatPaginatorModule,
-    MatInputModule
- 
+    MatInputModule 
   ],
-  exports: [
-    AppointmentReadComponent,
-    AppointmentCommercialComponent,
-    MatTableModule,
-    MatSortModule, 
-    MatPaginatorModule,
-    MatInputModule
 
-  ]
 })
 export class AppointmentModule { }

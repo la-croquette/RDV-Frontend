@@ -10,7 +10,7 @@ export class AppointmentService {
   constructor(private http: HttpClient) {}
 
 // To get all the appointments, is used by commercial and administrative for listing the appointments
-// 对于Observabale的理解 ： 
+// 对于Observabale的理解 ：组件中 订阅了他 用来监听输出
 getAppointments(): Observable<GetAppointments> {
     const headers = new HttpHeaders({ 'accept': '*/*' });
     const apiUrl = 'https://localhost:7225/api/Appointment';

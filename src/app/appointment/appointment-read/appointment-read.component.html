@@ -1,32 +1,33 @@
 <header><h2>Administrative Role</h2></header>
+<!-- Add some shadows -->
 <div class="mat-elevation-z8">  
   <mat-table [dataSource]="dataSource" matSort>
-    <!-- 客户姓名列 -->
+  
     <ng-container matColumnDef="client_Name">
+      <!-- mat-header-cell是一个material里面的组件，*matHeaderCellDef 是一个结构性指令（有*号），mat-sort-header是一个属性指令 -->
       <mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</mat-header-cell>
       <mat-cell *matCellDef="let appointment">{{ appointment.client_Name }}</mat-cell>
     </ng-container>
 
-    <!-- 预约日期列 -->
+
     <ng-container matColumnDef="appointment_Date">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Date</mat-header-cell>
       <mat-cell *matCellDef="let appointment">{{ appointment.appointment_Date | date:'yyyy-MM-dd HH:mm:ss' }}</mat-cell>
     </ng-container>
 
-    <!-- 预约主题列 -->
     <ng-container matColumnDef="appointment_Subject">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Sujet</mat-header-cell>
       <mat-cell *matCellDef="let appointment">{{ appointment.appointment_Subject }}</mat-cell>
     </ng-container>
-
+    <!-- 制定显示哪些表头 -->
     <mat-header-row *matHeaderRowDef="['client_Name', 'appointment_Date', 'appointment_Subject']"></mat-header-row>
+    <!-- 指定显示表里面有哪些列 -->
     <mat-row *matRowDef="let row; columns: ['client_Name', 'appointment_Date', 'appointment_Subject']"></mat-row>
   </mat-table>
-
   <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>
 
-<!-- 过滤器 -->
+
 <div class="filter-container">
   <div class="filter-input">
     <mat-form-field>
